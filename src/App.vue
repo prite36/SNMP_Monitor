@@ -1,14 +1,18 @@
 <template>
   <div id="app">
       <input @click="test()" type="button" name="test" value="test">
-
+      <r415-table :mib ="mib"></r415-table>
       <router-view></router-view>
   </div>
 </template>
 
 <script>
+import r415Table from './components/r415Table.vue'
 export default {
   name: 'app',
+  components: {
+    r415Table
+  },
   data () {
     return {
       mib: ''
