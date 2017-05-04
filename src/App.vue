@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-      <input @click="test()" type="button" name="test" value="test">
       <r415-table :mib ="mib"></r415-table>
       <router-view></router-view>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import r415Table from './components/r415Table.vue'
 export default {
   name: 'app',
@@ -15,17 +15,16 @@ export default {
   },
   data () {
     return {
-      mib: ''
+      mib: []
     }
   },
-  methods: {
-    test () {
-      var vm = this
-      this.axios.get('http://localhost:7001/415').then((response) => {
+  mounted () {
+    var vm = this
+    setInterval(function () {
+      axios.get('http://localhost:7001/415').then((response) => {
         vm.mib = response.data
-        console.log(vm.mib)
       })
-    }
+    }, 5000)
   }
 }
 </script>

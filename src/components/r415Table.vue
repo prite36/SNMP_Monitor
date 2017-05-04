@@ -1,8 +1,28 @@
 <template>
   <div class="">
-    <div v-for="data in mib">
-        {{data.int}}
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
+    <table class="table">
+      <thead>
+    <tr>
+      <th><abbr >Pos</abbr></th>
+      <th><abbr >Interface</abbr></th>
+      <th><abbr >Port</abbr></th>
+      <th><abbr >In Octet</abbr></th>
+      <th><abbr >Out Octet</abbr></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(data, index) in mib">
+
+        <th>{{index}}</th>
+        <td>{{data.int}}</td>
+        <td>{{data.port}}</td>
+        <td>{{data.inOctet}}</td>
+        <td>{{data.outOctet}}</td>
+
+    </tr>
+  </tbody>
+    </table>
   </div>
 </template>
 
@@ -19,6 +39,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 h1, h2 {
   font-weight: normal;
 }
