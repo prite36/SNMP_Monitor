@@ -1,7 +1,9 @@
 <template>
   <div class="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
-    <table class="table">
+
+     <p>{{inFo[0].discription}}</p>
+    <table class="table is-striped">
       <thead>
     <tr>
       <th><abbr >Pos</abbr></th>
@@ -9,16 +11,18 @@
       <th><abbr >Port</abbr></th>
       <th><abbr >In Octet</abbr></th>
       <th><abbr >Out Octet</abbr></th>
+      <th><abbr >Time</abbr></th>
     </tr>
     </thead>
     <tbody>
     <tr v-for="(data, index) in mib">
 
-        <th>{{index}}</th>
+        <th>{{index+1}}</th>
         <td>{{data.int}}</td>
         <td>{{data.port}}</td>
         <td>{{data.inOctet}}</td>
         <td>{{data.outOctet}}</td>
+        <td>{{data.time}}</td>
 
     </tr>
   </tbody>
@@ -28,7 +32,7 @@
 
 <script>
 export default {
-  props: ['mib'],
+  props: ['mib', 'inFo'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

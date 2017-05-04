@@ -22,18 +22,19 @@ var data415 = []
 app.get('/name', function (req, res) {
   var getInfoR415 = new snmp.Session({ host: '10.4.15.1', community: community })
   var oidget_info = '.1.3.6.1.2.1.1'
-  getNameR415.getSubtree({ oid: oidget_info }, function (err, varbinds) {
+  getInfoR415.getSubtree({ oid: oidget_info }, function (err, varbinds) {
     infoR415.push({
           discription: varbinds[0].value,
           uptime: varbinds[2].value,
           name: varbinds[4].value
     })
-    getNameR415.close()
+    getInfoR415.close()
     //console.log(varbinds[0].value);
   })
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headres', 'X-Requested-With')
   res.send(infoR415)
+  infoR415 = []
 })
 
 app.get('/415', function (req, res) {
@@ -45,7 +46,7 @@ app.get('/415', function (req, res) {
   var oidget_int = '.1.3.6.1.2.1.2.2.1.2'
   getintR415.getSubtree({ oid: oidget_int }, function (err, varbinds) {
     varbinds.forEach(function (data) {
-      int_415.push(data.value)
+      int_415.push(data.value.replace('GigabitEthernet','Gig '))
     })
     getintR415.close()
   })
@@ -71,7 +72,16 @@ app.get('/415', function (req, res) {
   gettimeR415.getSubtree({ oid: oidget_time }, function (err, varbinds) {
     varbinds.forEach(function (data) {
       // console.log(int_415)
-      time_415.push(data.value)
+      let timetick = data.value
+      let text =""
+      let day   = parseInt(timetick / 8640000)
+      let hour  = parseInt((timetick % 8640000) / 360000)
+      let min   = parseInt(((timetick % 8640000) % 360000) / 6000)
+      if(day!=0){text+=day.toString() + " Day "}
+      if(hour!=0){text+=hour.toString() + " hours "}
+      if(min!=0){text+=min.toString() + " min "}
+      time_415.push(text)
+      //time_415.push(data.value)
     })
     gettimeR415.close()
   })
@@ -82,7 +92,7 @@ app.get('/415', function (req, res) {
   getInR415.getSubtree({ oid: oidget_in }, function (err, varbinds) {
     varbinds.forEach(function (data) {
 
-      inOctet_415.push(data.value)
+      inOctet_415.push(convert(data.value))
     })
     getInR415.close()
   })
@@ -93,7 +103,7 @@ app.get('/415', function (req, res) {
   getOutR415.getSubtree({ oid: oidget_out }, function (err, varbinds) {
     varbinds.forEach(function (data) {
 
-      outOctet_415.push(data.value)
+      outOctet_415.push(convert(data.value))
     })
     getOutR415.close()
   })
@@ -125,3 +135,11 @@ app.use(express.static('dist'))
 app.listen(7001, function () {
   console.log('Example app listening on port 7001!')
 })
+
+function convert (byte) {
+   var sizes = ['Bytes', 'Kbps', 'Mbps', 'Gbps', 'Tbps']
+   byte = byte * 8
+   if (byte == 0) return '0 Byte'
+   var i = parseFloat(Math.floor(Math.log(byte) / Math.log(1000)))
+   return parseFloat(byte / Math.pow(1000, i), 2).toFixed(2) + ' ' + sizes[i]
+}

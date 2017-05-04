@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <r415-table :mib ="mib"></r415-table>
+      <r415-table :mib ="mib" :inFo ="inFo"></r415-table>
       <router-view></router-view>
   </div>
 </template>
@@ -15,6 +15,7 @@ export default {
   },
   data () {
     return {
+      inFo: [],
       mib: []
     }
   },
@@ -23,6 +24,9 @@ export default {
     setInterval(function () {
       axios.get('http://localhost:7001/415').then((response) => {
         vm.mib = response.data
+      })
+      axios.get('http://localhost:7001/name').then((response) => {
+        vm.inFo = response.data
       })
     }, 5000)
   }
