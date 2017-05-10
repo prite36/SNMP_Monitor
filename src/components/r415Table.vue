@@ -2,13 +2,13 @@
   <div class="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
       <br>
-      
+
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
           <div class="tile is-parent">
-            <article class="tile is-child box">
-              Discription : {{infoshow[0].discription}}<br>
-              Device Name : {{infoshow[0].name}}
+            <article class="tile is-child box" align="left">
+              <p style="font-weight:800;">Discription</p> <br> {{infoshow[0].discription}}<br><br>
+              <p style="font-weight:800;">Device Name</p>  {{infoshow[0].name}}
             </article>
           </div>
         </div>

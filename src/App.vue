@@ -8,7 +8,7 @@
           Network Monitoring
         </h1>
         <h2 class="subtitle">
-          B4-15 B4-02 
+          B4-15 B4-02
         </h2>
       </div>
     </div>
@@ -79,7 +79,7 @@ export default {
       mib402: [],
       mibshow: [],
       infoshow: [],
-      device: '415'
+      device: 415
     }
   },
   mounted () {
