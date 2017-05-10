@@ -1,8 +1,20 @@
 <template>
   <div class="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
+      <br>
+      
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+          <div class="tile is-parent">
+            <article class="tile is-child box">
+              Discription : {{infoshow[0].discription}}<br>
+              Device Name : {{infoshow[0].name}}
+            </article>
+          </div>
+        </div>
+    </div>
 
-     <p>{{inFo[0].discription}}</p>
+
     <table class="table is-striped">
       <thead>
     <tr>
@@ -15,7 +27,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(data, index) in mib">
+    <tr v-for="(data, index) in mibshow">
 
         <th>{{index+1}}</th>
         <td>{{data.int}}</td>
@@ -32,7 +44,7 @@
 
 <script>
 export default {
-  props: ['mib', 'inFo'],
+  props: ['mibshow', 'infoshow'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
