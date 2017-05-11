@@ -19,8 +19,8 @@
           <a class="nav-item">
             <img src="http://icons.iconarchive.com/icons/xenatt/minimalism/256/App-Network-Monitor-icon.png" alt="Network-Monitor">
           </a>
-          <a v-on:click="device = 415" class="nav-item is-tab is-hidden-mobile is-active">R415</a>
-          <a v-on:click="device = 402" class="nav-item is-tab is-hidden-mobile">R402</a>
+          <a v-on:click="change('415')" :class="'nav-item is-tab is-hidden-mobile ' +active">R415</a>
+          <a v-on:click="change('402')" :class="'nav-item is-tab is-hidden-mobile ' +active2">R402</a>
 
         </div>
         <span class="nav-toggle">
@@ -29,8 +29,8 @@
           <span></span>
         </span>
         <div class="nav-right nav-menu">
-          <a v-on:click="device = 415" class="nav-item is-tab is-hidden-tablet is-active">R415</a>
-          <a v-on:click="device = 402" class="nav-item is-tab is-hidden-tablet">R402</a>
+          <a v-on:click="change('415')" :class="'nav-item is-tab is-hidden-tablet '+active">R415</a>
+          <a v-on:click="change('402')" :class="'nav-item is-tab is-hidden-tablet '+active2">R402</a>
 
         </div>
       </div>
@@ -47,6 +47,7 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
+
             <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
             is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
@@ -79,7 +80,24 @@ export default {
       mib402: [],
       mibshow: [],
       infoshow: [],
-      device: 415
+      device: 415,
+      active: 'is-active',
+      active2: ''
+    }
+  },
+  methods: {
+    change (device) {
+      console.log(1)
+      this.device = device
+      if (device === '415') {
+        console.log(device)
+        console.log(typeof device)
+        this.active = 'is-active'
+        this.active2 = ''
+      } else {
+        this.active = ''
+        this.active2 = 'is-active'
+      }
     }
   },
   mounted () {
