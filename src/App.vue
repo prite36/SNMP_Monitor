@@ -87,11 +87,8 @@ export default {
   },
   methods: {
     change (device) {
-      console.log(1)
       this.device = device
       if (device === '415') {
-        console.log(device)
-        console.log(typeof device)
         this.active = 'is-active'
         this.active2 = ''
       } else {

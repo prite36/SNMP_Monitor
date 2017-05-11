@@ -33,7 +33,7 @@ app.get('/info415', function (req, res) {
   getInfoR415.getSubtree({ oid: oidget_info }, function (err, varbinds) {
     infoR415.push({
           discription: varbinds[0].value,
-          uptime: varbinds[2].value,
+          uptime: timecheck(varbinds[2].value),
           name: varbinds[4].value
     })
 
@@ -53,7 +53,7 @@ app.get('/info402', function (req, res) {
   getInfoR402.getSubtree({ oid: oidget_info }, function (err, varbinds) {
     infoR402.push({
           discription: varbinds[0].value,
-          uptime: varbinds[2].value,
+          uptime: timecheck(varbinds[2].value),
           name: varbinds[4].value
     })
     getInfoR402.close()

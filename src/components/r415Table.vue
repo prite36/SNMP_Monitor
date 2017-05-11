@@ -8,7 +8,9 @@
           <div class="tile is-parent">
             <article class="tile is-child box" align="left">
               <p style="font-weight:800;">Discription</p> {{infoshow[0].discription}}<br><br>
-              <p style="font-weight:800;">Device Name</p> {{infoshow[0].name}}
+              <p style="font-weight:800;">Device Name</p> {{infoshow[0].name}}<br><br>
+              <p style="font-weight:800;">Uptime</p> {{infoshow[0].uptime}}
+
             </article>
           </div>
         </div>
